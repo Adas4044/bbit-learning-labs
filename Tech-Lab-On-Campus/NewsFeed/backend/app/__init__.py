@@ -26,12 +26,18 @@ def create_app():
     def get_newsfeed() -> Response:
         """Flask route to get the latest newsfeed from datastore."""
         # PART 1
-        return jsonify({}, 200)
+        articles = get_all_news()
+        article_dicts = [a.to_dict() for a in articles]
+        return jsonify({"articles": article_dicts}), 200
 
     @app.route("/get-featured-article", methods=["GET"])
     def get_featured_article() -> Response:
         """Flask route to get the featured article from datastore."""
         # PART 2
-        return jsonify({}, 200)
+        articles = get_all_news()
+        articles.sort(key=lambda a: datetime.fromisoformat(a.published), reverse=True)
+        article_featured = articles[0]
+
+        return jsonify({article_featured}, 200)
 
     return app
