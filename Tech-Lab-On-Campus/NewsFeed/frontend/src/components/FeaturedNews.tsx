@@ -20,9 +20,18 @@ function FeaturedNewsCard({ article }: NewsCardProps) {
 
     return (
         <>
-            <span className='instruction'>Part 1: Show Featured News</span>
             <div className="featured-news-card">
-                {/* TODO: Remove the span above and implement "FeaturedNewsCard" */}
+                <div className="featured-story-title">
+                    {article.title}
+                </div>
+                <div className= "featured-news-img-div">
+                    <div className= "featured-news-img">
+                        <img src={article.image_url}></img>
+                    </div>
+                </div>
+                <div className = "featured-story-summary">
+                    {article.body}
+                </div>
             </div>
         </>
     );
